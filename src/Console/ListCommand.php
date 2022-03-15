@@ -73,7 +73,7 @@ class ListCommand extends BaseCommand
      */
     protected function listCommands(): void
     {
-        $this->title('PinAdmin 命令行命令列表:');
+        $this->title('PinAdmin 命令行命令列表');
 
         $commands = $this->getCommands();
 
