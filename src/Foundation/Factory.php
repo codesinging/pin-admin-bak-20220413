@@ -283,6 +283,17 @@ class Factory
     }
 
     /**
+     * 创建控制器文件
+     *
+     * @return $this
+     */
+    public function createControllers(): static
+    {
+        $this->makeFiles($this->stubPath('controllers'), $this->app->appPath('Controllers'));
+        return $this;
+    }
+
+    /**
      * 创建资源文件
      *
      * @return $this
@@ -306,6 +317,7 @@ class Factory
             ->createRoutes()
             ->createConfig()
             ->createModels()
+            ->createControllers()
             ->createResources();
 
         return $this;

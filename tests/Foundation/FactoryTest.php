@@ -215,6 +215,14 @@ class FactoryTest extends TestCase
         self::assertFileExists($app->appPath('Models/AdminUser.php'));
     }
 
+    public function testCreateControllers()
+    {
+        $app = Factory::new('admin')->createControllers()->app();
+
+        self::assertDirectoryExists($app->appPath('Controllers'));
+        self::assertFileExists($app->appPath('Controllers/IndexController.php'));
+    }
+
     public function testCreateResources()
     {
         $app = Factory::new('admin')->createResources()->app();
