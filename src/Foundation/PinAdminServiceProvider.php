@@ -6,6 +6,8 @@
 
 namespace CodeSinging\PinAdmin\Foundation;
 
+use CodeSinging\PinAdmin\Middleware\Auth;
+use CodeSinging\PinAdmin\Middleware\Guest;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +29,10 @@ class PinAdminServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected array $middlewares = [];
+    protected array $middlewares = [
+        PinAdmin::LABEL . '.auth' => Auth::class,
+        PinAdmin::LABEL . '.guest' => Guest::class,
+    ];
 
     /**
      * 注册 PinAdmin 服务
@@ -46,12 +51,12 @@ class PinAdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()){
+        if ($this->app->runningInConsole()) {
             $this->registerCommands();
             $this->loadMigrations();
         }
 
-        if (!$this->app->routesAreCached()){
+        if (!$this->app->routesAreCached()) {
             $this->loadRoutes();
         }
 
