@@ -272,6 +272,17 @@ class Factory
     }
 
     /**
+     * 创建模型文件
+     *
+     * @return $this
+     */
+    public function createModels(): static
+    {
+        $this->makeFiles($this->stubPath('models'), $this->app->appPath('Models'));
+        return $this;
+    }
+
+    /**
      * 创建资源文件
      *
      * @return $this
@@ -294,6 +305,7 @@ class Factory
             ->createDirectories()
             ->createRoutes()
             ->createConfig()
+            ->createModels()
             ->createResources();
 
         return $this;
