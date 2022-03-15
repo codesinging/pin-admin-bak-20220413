@@ -6,6 +6,7 @@
 
 namespace CodeSinging\PinAdmin\Foundation;
 
+use CodeSinging\PinAdmin\Console\ListCommand;
 use CodeSinging\PinAdmin\Middleware\Auth;
 use CodeSinging\PinAdmin\Middleware\Guest;
 use Illuminate\Routing\Router;
@@ -22,7 +23,9 @@ class PinAdminServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected array $commands = [];
+    protected array $commands = [
+        ListCommand::class,
+    ];
 
     /**
      * PinAdmin 中间件
