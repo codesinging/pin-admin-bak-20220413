@@ -254,6 +254,8 @@ class ApplicationTest extends TestCase
         $routes = Route::getRoutes()->getRoutes();
 
         self::assertGreaterThan(0, count($routes));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->name('index', '.')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->name('index', '.')));
         self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->name('auth', '.')));
         self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->name('auth', '.')));
     }

@@ -366,8 +366,11 @@ class Application
     public function defaultRoutes(): static
     {
         $this->routeGroup(function () {
-            Route::get('auth', [$this->getNamespace('Controllers', 'AuthController'), 'index'])->name($this->name('auth', '.'));
+            Route::get('/', [$this->getNamespace('Controllers', 'IndexController'), 'index'])->name($this->name('index', '.'));
         });
+        $this->routeGroup(function () {
+            Route::get('auth', [$this->getNamespace('Controllers', 'AuthController'), 'index'])->name($this->name('auth', '.'));
+        }, false);
         return $this;
     }
 }
