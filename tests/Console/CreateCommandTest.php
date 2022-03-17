@@ -6,13 +6,12 @@
 
 namespace Tests\Console;
 
-use CodeSinging\PinAdmin\Console\CreateCommand;
 use CodeSinging\PinAdmin\Foundation\Factory;
 use Tests\TestCase;
 
 class CreateCommandTest extends TestCase
 {
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
         Factory::clean();
     }
@@ -24,6 +23,8 @@ class CreateCommandTest extends TestCase
             ->assertSuccessful();
 
         self::assertTrue(Factory::exists('admin'));
+        self::assertFileExists(Factory::new('admin')->app()->appPath('Controllers/IndexController.php'));
+
     }
 
     public function testVerifyName()
@@ -46,5 +47,15 @@ class CreateCommandTest extends TestCase
         $this->artisan('admin:create admin')
             ->expectsOutputToContain('应用[admin]已经存在')
             ->assertSuccessful();
+    }
+
+    /**
+     * @depends testCreate
+     * @return void
+     */
+    public function testRoutes()
+    {
+        $this->get('/admin/auth')
+            ->assertOk();
     }
 }

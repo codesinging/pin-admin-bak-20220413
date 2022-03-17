@@ -7,6 +7,8 @@
 namespace CodeSinging\PinAdmin\Foundation;
 
 use Closure;
+use CodeSinging\PinAdmin\Controllers\AuthController;
+use CodeSinging\PinAdmin\Controllers\IndexController;
 use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -366,10 +368,10 @@ class Application
     public function defaultRoutes(): static
     {
         $this->routeGroup(function () {
-            Route::get('/', [$this->getNamespace('Controllers', 'IndexController'), 'index'])->name($this->name('index', '.'));
+            Route::get('/', [IndexController::class, 'index'])->name($this->name('index', '.'));
         });
         $this->routeGroup(function () {
-            Route::get('auth', [$this->getNamespace('Controllers', 'AuthController'), 'index'])->name($this->name('auth', '.'));
+            Route::get('auth', [AuthController::class, 'index'])->name($this->name('auth', '.'));
         }, false);
         return $this;
     }
