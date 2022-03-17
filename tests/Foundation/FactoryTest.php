@@ -43,7 +43,7 @@ class FactoryTest extends TestCase
         self::assertFalse(Factory::has('admin'));
 
         Factory::new('admin')->create();
-        Admin::reload();
+        Admin::load();
 
         self::assertTrue(Factory::has('admin'));
     }
@@ -53,7 +53,7 @@ class FactoryTest extends TestCase
         Factory::clean();
 
         Factory::new('admin')->create();
-        Admin::reload();
+        Admin::load();
 
         self::assertTrue(Factory::exists('admin'));
         self::assertTrue(Factory::has('admin'));
@@ -70,7 +70,7 @@ class FactoryTest extends TestCase
 
         Factory::new('admin1')->create();
         Factory::new('admin2')->create();
-        Admin::reload();
+        Admin::load();
 
         self::assertTrue(Factory::exists('admin1'));
         self::assertTrue(Factory::exists('admin2'));
@@ -96,7 +96,7 @@ class FactoryTest extends TestCase
         Factory::clean();
 
         $factory = Factory::new('admin_user')->create();
-        Admin::reload();
+        Admin::load();
 
         self::assertEquals('admin', $factory->replace('__DUMMY_LABEL__'));
         self::assertEquals('ADMIN', $factory->replace('__DUMMY_UPPER_LABEL__'));

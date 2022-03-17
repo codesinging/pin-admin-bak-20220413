@@ -28,7 +28,7 @@ use Illuminate\View\View;
  * @method static string rootPublicDirectory(?string ...$paths)
  * @method static string rootPublicPath(?string ...$paths)
  * @method static string packagePath(?string ...$paths)
- * @method static PinAdmin reload()
+ * @method static PinAdmin load()
  * @method static PinAdmin boot(string $name)
  * @method static Application[] apps()
  * @method static Application app(string $name = null)

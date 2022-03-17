@@ -87,7 +87,7 @@ class Factory
         File::deleteDirectory($app->appPath());
         File::deleteDirectory($app->publicPath());
 
-        Admin::reload();
+        Admin::load();
     }
 
     /**
@@ -101,7 +101,7 @@ class Factory
         File::deleteDirectory(Admin::rootAppPath());
         File::deleteDirectory(Admin::rootPublicPath());
 
-        Admin::reload();
+        Admin::load();
     }
 
     /**

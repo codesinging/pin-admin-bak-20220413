@@ -86,9 +86,9 @@ class PinAdmin
     /**
      * 当前启动的 PinAdmin 应用
      *
-     * @var Application
+     * @var ?Application
      */
-    protected Application $app;
+    protected ?Application $app = null;
 
     /**
      * 构造函数
@@ -218,10 +218,11 @@ class PinAdmin
     /**
      * 加载应用
      *
-     * @return void
+     * @return $this
      */
-    private function load(): void
+    public function load(): static
     {
+        $this->apps = [];
         if (File::isDirectory($this->rootPath())) {
             $directories = File::directories($this->rootPath());
             foreach ($directories as $directory) {
@@ -229,17 +230,6 @@ class PinAdmin
                 $this->apps[$application->name()] = $application;
             }
         }
-    }
-
-    /**
-     * 重新加载应用
-     *
-     * @return $this
-     */
-    public function reload(): static
-    {
-        $this->apps = [];
-        $this->load();
         return $this;
     }
 
@@ -274,9 +264,9 @@ class PinAdmin
      *
      * @param string|null $name
      *
-     * @return Application
+     * @return Application|null
      */
-    public function app(string $name = null): Application
+    public function app(string $name = null): ?Application
     {
         return is_null($name) ? $this->app : ($this->apps[$name] ?? $this->app);
     }
