@@ -55,6 +55,11 @@ class CreateCommandTest extends TestCase
      */
     public function testRoutes()
     {
+        $this->get('/admin')
+            ->assertSeeText('Redirecting')
+            ->assertSeeText('admin/auth')
+            ->assertStatus(302);
+
         $this->get('/admin/auth')
             ->assertOk();
     }
