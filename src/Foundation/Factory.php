@@ -294,6 +294,17 @@ class Factory
     }
 
     /**
+     * 创建数据库迁移文件
+     *
+     * @return $this
+     */
+    public function createMigrations(): static
+    {
+        $this->makeFiles($this->stubPath('migrations'), $this->app->path('migrations'));
+        return $this;
+    }
+
+    /**
      * 创建资源文件
      *
      * @return $this
@@ -318,6 +329,7 @@ class Factory
             ->createConfig()
             ->createModels()
             ->createControllers()
+            ->createMigrations()
             ->createResources();
 
         return $this;
