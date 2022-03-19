@@ -173,69 +173,43 @@ class FactoryTest extends TestCase
         File::deleteDirectory($stub);
     }
 
-    public function testCreateRootDirectories()
+    public function testCreate()
     {
-        Factory::new('admin')->createRootDirectories();
+        $app = Factory::new('admin')->create()->app();
 
         self::assertDirectoryExists(Admin::rootPath());
         self::assertDirectoryExists(Admin::rootAppPath());
         self::assertDirectoryExists(Admin::rootPublicPath());
-    }
-
-    public function testCreateDirectories()
-    {
-        $app = Factory::new('admin')->createDirectories()->app();
 
         self::assertDirectoryExists($app->path());
         self::assertDirectoryExists($app->appPath());
         self::assertDirectoryExists($app->publicPath());
-    }
-
-    public function testCreateRoutes()
-    {
-        $app = Factory::new('admin')->createRoutes()->app();
 
         self::assertDirectoryExists($app->path('routes'));
         self::assertFileExists($app->path('routes/web.php'));
-    }
-
-    public function testCreateConfig()
-    {
-        $app = Factory::new('admin')->createConfig()->app();
 
         self::assertDirectoryExists($app->path('config'));
         self::assertFileExists($app->path('config/app.php'));
-    }
-
-    public function testCreateModels()
-    {
-        $app = Factory::new('admin')->createModels()->app();
 
         self::assertDirectoryExists($app->appPath('Models'));
         self::assertFileExists($app->appPath('Models/AdminUser.php'));
-    }
-
-    public function testCreateControllers()
-    {
-        $app = Factory::new('admin')->createControllers()->app();
 
         self::assertDirectoryExists($app->appPath('Controllers'));
         self::assertFileExists($app->appPath('Controllers/IndexController.php'));
-    }
-
-    public function testCreateMigrations()
-    {
-        $app = Factory::new('admin')->createMigrations()->app();
 
         self::assertDirectoryExists($app->path('migrations'));
         self::assertFileExists($app->path('migrations/2022_03_18_000000_create_admin_users_table.php'));
-    }
-
-    public function testCreateResources()
-    {
-        $app = Factory::new('admin')->createResources()->app();
 
         self::assertDirectoryExists($app->path('resources'));
         self::assertFileExists($app->path('resources/views/public/page.blade.php'));
+
+    }
+
+    public function testBoot()
+    {
+        Factory::new('admin')->create()->boot();
+
+        self::assertEquals(Admin::app(), Admin::app('admin'));
+        self::assertEquals('admin', Admin::app()->name());
     }
 }

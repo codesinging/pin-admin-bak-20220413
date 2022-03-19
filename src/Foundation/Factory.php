@@ -221,98 +221,74 @@ class Factory
 
     /**
      * 创建 PinAdmin 应用根目录
-     *
-     * @return $this
      */
-    public function createRootDirectories(): static
+    private function createRootDirectories()
     {
         $this->makeDirectories(
             Admin::rootPath(),
             Admin::rootAppPath(),
             Admin::rootPublicPath()
         );
-        return $this;
     }
 
     /**
      * 创建 PinAdmin 应用基础目录、应用类目录、公共文件目录
-     *
-     * @return $this
      */
-    public function createDirectories(): static
+    private function createDirectories()
     {
         $this->makeDirectories(
             $this->app->path(),
             $this->app->appPath(),
             $this->app->publicPath()
         );
-        return $this;
     }
 
     /**
      * 创建路由文件
-     *
-     * @return $this
      */
-    public function createRoutes(): static
+    private function createRoutes()
     {
         $this->makeFiles($this->stubPath('routes'), $this->app->path('routes'));
-        return $this;
     }
 
     /**
      * 创建配置文件
-     *
-     * @return $this
      */
-    public function createConfig(): static
+    private function createConfig()
     {
         $this->makeFiles($this->stubPath('config'), $this->app->path('config'));
-        return $this;
     }
 
     /**
      * 创建模型文件
-     *
-     * @return $this
      */
-    public function createModels(): static
+    private function createModels()
     {
         $this->makeFiles($this->stubPath('models'), $this->app->appPath('Models'));
-        return $this;
     }
 
     /**
      * 创建控制器文件
-     *
-     * @return $this
      */
-    public function createControllers(): static
+    private function createControllers()
     {
         $this->makeFiles($this->stubPath('controllers'), $this->app->appPath('Controllers'));
-        return $this;
     }
 
     /**
      * 创建数据库迁移文件
-     *
-     * @return $this
      */
-    public function createMigrations(): static
+    private function createMigrations()
     {
         $this->makeFiles($this->stubPath('migrations'), $this->app->path('migrations'));
-        return $this;
     }
 
     /**
      * 创建资源文件
-     *
-     * @return $this
      */
-    public function createResources(): static
+    private function createResources()
     {
         File::copyDirectory(Admin::packagePath('publish'), $this->app->path('resources'));
-        return $this;
     }
 
     /**
@@ -322,16 +298,26 @@ class Factory
      */
     public function create(): static
     {
-        $this
-            ->createRootDirectories()
-            ->createDirectories()
-            ->createRoutes()
-            ->createConfig()
-            ->createModels()
-            ->createControllers()
-            ->createMigrations()
-            ->createResources();
+        $this->createRootDirectories();
+        $this->createDirectories();
+        $this->createRoutes();
+        $this->createConfig();
+        $this->createModels();
+        $this->createControllers();
+        $this->createMigrations();
+        $this->createResources();
 
+        return $this;
+    }
+
+    /**
+     * 启动当前创建的应用
+     *
+     * @return $this
+     */
+    public function boot(): static
+    {
+        Admin::load()->boot($this->app->name());
         return $this;
     }
 }
