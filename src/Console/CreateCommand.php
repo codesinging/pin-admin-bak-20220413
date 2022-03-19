@@ -43,6 +43,7 @@ class CreateCommand extends BaseCommand
                 $this->runSeeders();
 
                 $this->info(sprintf('创建 PinAdmin 应用[%s]成功', $name));
+                $this->info(sprintf('应用[%s]地址：%s', $name, Admin::url()));
             } else {
                 $this->error(sprintf('应用[%s]已经存在', $name));
             }
