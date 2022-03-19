@@ -9,6 +9,7 @@ namespace Tests\Foundation;
 use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Foundation\Factory;
 use CodeSinging\PinAdmin\Foundation\PinAdmin;
+use CodeSinging\PinAdmin\Models\User;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
@@ -55,6 +56,6 @@ class PinAdminServiceProviderTest extends TestCase
     {
         self::assertArrayHasKey('admin', config('auth.guards'));
         self::assertEquals('admin_users', config('auth.guards.admin.provider'));
-        self::assertEquals(Admin::boot('admin')->getNamespace('Models/AdminUser'), config('auth.providers.admin_users.model'));
+        self::assertEquals(User::class, config('auth.providers.admin_users.model'));
     }
 }
