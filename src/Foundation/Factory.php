@@ -261,14 +261,6 @@ class Factory
     }
 
     /**
-     * 创建控制器文件
-     */
-    private function createControllers()
-    {
-        $this->makeFiles($this->stubPath('controllers'), $this->app->appPath('Controllers'));
-    }
-
-    /**
      * 创建数据库迁移文件
      */
     private function createMigrations()
@@ -295,7 +287,6 @@ class Factory
         $this->createDirectories();
         $this->createRoutes();
         $this->createConfig();
-        $this->createControllers();
         $this->createMigrations();
         $this->createResources();
 

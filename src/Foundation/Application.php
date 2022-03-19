@@ -372,6 +372,7 @@ class Application
         });
         $this->routeGroup(function () {
             Route::get('auth', [AuthController::class, 'index'])->name($this->name('auth', '.'));
+            Route::post('auth/login', [AuthController::class, 'login'])->name($this->name('auth.login', '.'));
         }, false);
         return $this;
     }

@@ -9,10 +9,8 @@ namespace Tests\Foundation;
 use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Foundation\Application;
 use CodeSinging\PinAdmin\Foundation\Factory;
-use CodeSinging\PinAdmin\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 class FactoryTest extends TestCase
@@ -191,9 +189,6 @@ class FactoryTest extends TestCase
 
         self::assertDirectoryExists($app->path('config'));
         self::assertFileExists($app->path('config/app.php'));
-
-        self::assertDirectoryExists($app->appPath('Controllers'));
-        self::assertFileExists($app->appPath('Controllers/IndexController.php'));
 
         self::assertDirectoryExists($app->path('migrations'));
         self::assertFileExists($app->path('migrations/2022_03_18_000000_create_admin_users_table.php'));
