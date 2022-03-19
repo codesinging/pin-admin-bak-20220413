@@ -67,7 +67,7 @@ return [
     */
     'auth_provider' => [
         'driver' => 'eloquent',
-        'model' => __DUMMY_NAMESPACE__\Models\__DUMMY_STUDLY_NAME__User::class,
+        'model' => CodeSinging\PinAdmin\Models\User::class,
     ],
 
 ];
