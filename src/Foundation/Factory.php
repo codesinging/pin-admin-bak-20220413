@@ -311,6 +311,17 @@ class Factory
     }
 
     /**
+     * 加载当前创建的应用
+     *
+     * @return $this
+     */
+    public function load(): static
+    {
+        Admin::load();
+        return $this;
+    }
+
+    /**
      * 启动当前创建的应用
      *
      * @return $this

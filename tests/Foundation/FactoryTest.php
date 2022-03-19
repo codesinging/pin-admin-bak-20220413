@@ -42,8 +42,7 @@ class FactoryTest extends TestCase
 
         self::assertFalse(Factory::has('admin'));
 
-        Factory::new('admin')->create();
-        Admin::load();
+        Factory::new('admin')->create()->load();
 
         self::assertTrue(Factory::has('admin'));
     }
@@ -52,8 +51,7 @@ class FactoryTest extends TestCase
     {
         Factory::clean();
 
-        Factory::new('admin')->create();
-        Admin::load();
+        Factory::new('admin')->create()->load();
 
         self::assertTrue(Factory::exists('admin'));
         self::assertTrue(Factory::has('admin'));
@@ -68,9 +66,8 @@ class FactoryTest extends TestCase
     {
         Factory::clean();
 
-        Factory::new('admin1')->create();
-        Factory::new('admin2')->create();
-        Admin::load();
+        Factory::new('admin1')->create()->load();
+        Factory::new('admin2')->create()->load();
 
         self::assertTrue(Factory::exists('admin1'));
         self::assertTrue(Factory::exists('admin2'));
@@ -95,8 +92,7 @@ class FactoryTest extends TestCase
     {
         Factory::clean();
 
-        $factory = Factory::new('admin_user')->create();
-        Admin::load();
+        $factory = Factory::new('admin_user')->create()->load();
 
         self::assertEquals('admin', $factory->replace('__DUMMY_LABEL__'));
         self::assertEquals('ADMIN', $factory->replace('__DUMMY_UPPER_LABEL__'));
@@ -203,6 +199,13 @@ class FactoryTest extends TestCase
         self::assertDirectoryExists($app->path('resources'));
         self::assertFileExists($app->path('resources/views/public/page.blade.php'));
 
+    }
+
+    public function testLoad()
+    {
+        Factory::new('admin')->create()->load();
+
+        self::assertTrue(Factory::has('admin'));
     }
 
     public function testBoot()
