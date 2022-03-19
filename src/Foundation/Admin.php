@@ -57,6 +57,8 @@ use Illuminate\View\View;
  * @method static Application routeGroup(Closure $closure, bool $auth = true)
  * @method static Application defaultRoutes()
  *
+ * @see PinAdmin
+ * @see Application
  */
 class Admin extends Facade
 {

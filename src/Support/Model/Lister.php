@@ -28,8 +28,7 @@ trait Lister
 
         $builder = $builder ?? $this->newQuery();
 
-        if (request()->boolean('pageable')) {
-            $page = intval(request('page'));
+        if ($page = intval(request('page', 0))) {
             $size = intval(request('size'));
 
             $pagination = $builder->paginate($size, ['*'], 'page', $page);
@@ -39,7 +38,6 @@ trait Lister
             }
 
             $result = [
-                'pageable' => true,
                 'page' => $pagination->currentPage(),
                 'size' => $pagination->perPage(),
                 'total' => $pagination->total(),
@@ -51,7 +49,7 @@ trait Lister
         } else {
             $data = $builder->get()->toArray();
             $result = [
-                'pageable' => false,
+                'page' => $page,
                 'data' => $data,
                 'total' => count($data),
             ];

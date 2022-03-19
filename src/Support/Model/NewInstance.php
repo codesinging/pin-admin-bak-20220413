@@ -6,8 +6,6 @@
 
 namespace CodeSinging\PinAdmin\Support\Model;
 
-use JetBrains\PhpStorm\Pure;
-
 trait NewInstance
 {
     /**
@@ -17,7 +15,6 @@ trait NewInstance
      *
      * @return static
      */
-    #[Pure]
     public static function new(array $attributes = []): static
     {
         return new static($attributes);

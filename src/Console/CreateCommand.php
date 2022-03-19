@@ -6,8 +6,10 @@
 
 namespace CodeSinging\PinAdmin\Console;
 
+use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Foundation\Factory;
 use CodeSinging\PinAdmin\Foundation\PinAdmin;
+use CodeSinging\PinAdmin\Seeders\DatabaseSeeder;
 use CodeSinging\PinAdmin\Support\Console\BaseCommand;
 use Illuminate\Support\Str;
 
@@ -36,7 +38,9 @@ class CreateCommand extends BaseCommand
 
         if ($this->verify($name = Str::snake($this->argument('name')))) {
             if (!Factory::exists($name)) {
-                Factory::new($name)->create();
+                Factory::new($name)->create()->boot();
+                $this->runMigrations();
+                $this->runSeeders();
 
                 $this->info(sprintf('创建 PinAdmin 应用[%s]成功', $name));
             } else {
@@ -57,5 +61,29 @@ class CreateCommand extends BaseCommand
     private function verify(string $name): bool
     {
         return !empty($name) && preg_match('/^[a-z]+[a-z0-9_]*$/', $name) === 1;
+    }
+
+    /**
+     * 运行数据库迁移
+     *
+     * @return void
+     */
+    private function runMigrations()
+    {
+        $this->callSilent('migrate', [
+            '--path' => Admin::directory('migrations'),
+        ]);
+    }
+
+    /**
+     * 运行数据库填充
+     *
+     * @return void
+     */
+    private function runSeeders()
+    {
+        $this->callSilent('db:seed', [
+            '--class' => DatabaseSeeder::class,
+        ]);
     }
 }

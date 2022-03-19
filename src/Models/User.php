@@ -6,6 +6,7 @@
 
 namespace CodeSinging\PinAdmin\Models;
 
+use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Support\Model\AuthModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -24,6 +25,11 @@ class User extends AuthModel
     protected $casts = [
         'status' => 'boolean',
     ];
+
+    protected function init()
+    {
+        $this->setTable(Admin::name('users'));
+    }
 
     protected function password(): Attribute
     {

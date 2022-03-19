@@ -6,6 +6,7 @@
 
 namespace CodeSinging\PinAdmin\Foundation;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -260,14 +261,6 @@ class Factory
     }
 
     /**
-     * 创建模型文件
-     */
-    private function createModels()
-    {
-        $this->makeFiles($this->stubPath('models'), $this->app->appPath('Models'));
-    }
-
-    /**
      * 创建控制器文件
      */
     private function createControllers()
@@ -302,7 +295,6 @@ class Factory
         $this->createDirectories();
         $this->createRoutes();
         $this->createConfig();
-        $this->createModels();
         $this->createControllers();
         $this->createMigrations();
         $this->createResources();

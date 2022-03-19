@@ -9,11 +9,16 @@ namespace Tests\Foundation;
 use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Foundation\Application;
 use CodeSinging\PinAdmin\Foundation\Factory;
+use CodeSinging\PinAdmin\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 class FactoryTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function tearDown(): void
     {
         Factory::clean();
@@ -171,7 +176,7 @@ class FactoryTest extends TestCase
 
     public function testCreate()
     {
-        $app = Factory::new('admin')->create()->app();
+        $app = Factory::new('admin')->create()->boot()->app();
 
         self::assertDirectoryExists(Admin::rootPath());
         self::assertDirectoryExists(Admin::rootAppPath());
@@ -187,9 +192,6 @@ class FactoryTest extends TestCase
         self::assertDirectoryExists($app->path('config'));
         self::assertFileExists($app->path('config/app.php'));
 
-        self::assertDirectoryExists($app->appPath('Models'));
-        self::assertFileExists($app->appPath('Models/AdminUser.php'));
-
         self::assertDirectoryExists($app->appPath('Controllers'));
         self::assertFileExists($app->appPath('Controllers/IndexController.php'));
 
@@ -198,7 +200,6 @@ class FactoryTest extends TestCase
 
         self::assertDirectoryExists($app->path('resources'));
         self::assertFileExists($app->path('resources/views/public/page.blade.php'));
-
     }
 
     public function testLoad()

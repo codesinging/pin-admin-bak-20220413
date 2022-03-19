@@ -14,4 +14,20 @@ class AuthModel extends User
     use HelperTraits;
 
     use Notifiable;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->init();
+    }
+
+    /**
+     * 初始化模型
+     * @return void
+     */
+    protected function init()
+    {
+
+    }
 }
