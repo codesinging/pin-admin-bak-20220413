@@ -7,7 +7,6 @@
 namespace Tests\Controllers;
 
 use CodeSinging\PinAdmin\Exceptions\AdminError;
-use CodeSinging\PinAdmin\Foundation\Admin;
 use CodeSinging\PinAdmin\Foundation\Factory;
 use CodeSinging\PinAdmin\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

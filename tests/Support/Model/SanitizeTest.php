@@ -29,22 +29,22 @@ class SanitizeTest extends TestCase
         Admin::boot('admin');
 
         self::assertEquals([
-            'name' => 'Name',
+            'username' => 'Name',
             'password' => 'Password'
         ], User::new()->sanitize([
-            'name' => 'Name',
+            'username' => 'Name',
             'password' => 'Password',
             'none' => 'None',
         ]));
 
         Request::merge([
-            'name' => 'Name',
+            'username' => 'Name',
             'password' => 'Password',
             'none' => 'None',
         ]);
 
         self::assertEquals([
-            'name' => 'Name',
+            'username' => 'Name',
             'password' => 'Password'
         ], User::new()->sanitize(request()));
     }

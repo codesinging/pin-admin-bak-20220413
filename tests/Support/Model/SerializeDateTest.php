@@ -28,7 +28,7 @@ class SerializeDateTest extends TestCase
         $this->artisan('admin:create admin');
         Admin::boot('admin');
 
-        User::new()->create(['name' => 'user1', 'password' => '123']);
+        User::new()->create(['username' => 'user1', 'password' => '123']);
         self::assertEquals(date('Y-m-d H:i:s'), User::new()->latest()->first()->toArray()['created_at']);
     }
 }

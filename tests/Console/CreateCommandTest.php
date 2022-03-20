@@ -29,7 +29,6 @@ class CreateCommandTest extends TestCase
             ->assertSuccessful();
 
         self::assertTrue(Factory::exists('admin'));
-        self::assertFileExists(Factory::new('admin')->app()->appPath('Controllers/IndexController.php'));
 
     }
 
@@ -88,7 +87,7 @@ class CreateCommandTest extends TestCase
         $this->artisan('admin:create admin');
 
         $this->assertDatabaseHas(Admin::name('users', '_'), [
-            'name' => 'admin'
+            'username' => 'admin'
         ]);
     }
 }
