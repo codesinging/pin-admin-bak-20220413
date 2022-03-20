@@ -39,6 +39,7 @@ use Illuminate\View\View;
  * @method Factory|View page(string $path)
  * @method Guard|StatefulGuard auth()
  * @method Authenticatable|null user()
+ * @method string routeName(string $name)
  * @method Application routeGroup(Closure $closure, bool $auth = true)
  * @method Application defaultRoutes()
  */

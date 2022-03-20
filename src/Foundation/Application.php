@@ -344,6 +344,19 @@ class Application
     }
 
     /**
+     * 获取应用路由名
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    #[Pure]
+    public function routeName(string $name): string
+    {
+        return $this->name($name, '.');
+    }
+
+    /**
      * 注册路由
      *
      * @param Closure $closure
@@ -368,11 +381,13 @@ class Application
     public function defaultRoutes(): static
     {
         $this->routeGroup(function () {
-            Route::get('/', [IndexController::class, 'index'])->name($this->name('index', '.'));
+            Route::get('/', [IndexController::class, 'index'])->name($this->routeName('index'));
+            Route::get('auth/user', [AuthController::class, 'user'])->name($this->routeName('auth.user'));
         });
         $this->routeGroup(function () {
-            Route::get('auth', [AuthController::class, 'index'])->name($this->name('auth', '.'));
-            Route::post('auth/login', [AuthController::class, 'login'])->name($this->name('auth.login', '.'));
+            Route::get('auth', [AuthController::class, 'index'])->name($this->routeName('auth.index'));
+            Route::post('auth/login', [AuthController::class, 'login'])->name($this->routeName('auth.login'));
+            Route::post('auth/logout', [AuthController::class, 'logout'])->name($this->routeName('auth.logout'));
         }, false);
         return $this;
     }

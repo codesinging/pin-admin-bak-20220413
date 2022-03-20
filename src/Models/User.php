@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class User extends AuthModel
 {
     protected $fillable = [
-        'name',
+        'username',
         'password',
         'status',
     ];

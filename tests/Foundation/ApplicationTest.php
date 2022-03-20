@@ -210,6 +210,17 @@ class ApplicationTest extends TestCase
      * @depends testCreateApplication
      * @return void
      */
+    public function testRouteName()
+    {
+        $admin = Admin::app('admin');
+        self::assertEquals('admin.auth', $admin->routeName('auth'));
+        self::assertEquals('admin.auth.login', $admin->routeName('auth.login'));
+    }
+
+    /**
+     * @depends testCreateApplication
+     * @return void
+     */
     public function testRouteGroup()
     {
         $originRoutes = Route::getRoutes()->getRoutes();
@@ -251,12 +262,13 @@ class ApplicationTest extends TestCase
      */
     public function testDefaultRoutes()
     {
-        $routes = Route::getRoutes()->getRoutes();
-
-        self::assertGreaterThan(0, count($routes));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->name('index', '.')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->name('index', '.')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->name('auth', '.')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->name('auth', '.')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.login')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.login')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.logout')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.logout')));
     }
 }

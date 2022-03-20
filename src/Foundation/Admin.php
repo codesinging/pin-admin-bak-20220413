@@ -54,6 +54,7 @@ use Illuminate\View\View;
  * @method static Factory|View page(string $path)
  * @method static Guard|StatefulGuard auth()
  * @method static Authenticatable|null user()
+ * @method static string routeName(string $name)
  * @method static Application routeGroup(Closure $closure, bool $auth = true)
  * @method static Application defaultRoutes()
  *

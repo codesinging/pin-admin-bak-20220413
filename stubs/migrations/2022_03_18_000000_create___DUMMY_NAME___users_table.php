@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('__DUMMY_NAME___users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('username')->unique();
             $table->string('password');
             $table->boolean('status')->default(true);
             $table->timestamps();

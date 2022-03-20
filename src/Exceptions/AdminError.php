@@ -12,5 +12,6 @@ class AdminError
 
     const ERROR = -1;
 
-
+    const AUTH__USER_STATUS_ERROR = 900100;
+    const AUTH__NAME_AND_PASSWORD_NOT_MATCHED = 900101;
 }

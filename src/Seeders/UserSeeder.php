@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     {
         User::new()->truncate();
 
-        $user = User::new()->create([
-            'name' => 'admin',
+        User::new()->create([
+            'username' => 'admin',
             'password' => 'admin.123',
         ]);
     }
