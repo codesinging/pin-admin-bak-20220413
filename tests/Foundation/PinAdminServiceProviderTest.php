@@ -45,7 +45,14 @@ class PinAdminServiceProviderTest extends TestCase
      */
     public function testLoadRoutes()
     {
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->name('index', '.')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('index.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('index.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.index')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.login')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.login')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.logout')));
+        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.logout')));
     }
 
     /**

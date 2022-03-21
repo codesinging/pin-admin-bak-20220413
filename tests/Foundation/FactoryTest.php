@@ -185,7 +185,8 @@ class FactoryTest extends TestCase
         self::assertDirectoryExists($app->publicPath());
 
         self::assertDirectoryExists($app->path('routes'));
-        self::assertFileExists($app->path('routes/web.php'));
+        self::assertFileExists($app->path('routes/auth.php'));
+        self::assertFileExists($app->path('routes/guest.php'));
 
         self::assertDirectoryExists($app->path('config'));
         self::assertFileExists($app->path('config/app.php'));

@@ -372,23 +372,4 @@ class Application
 
         return $this;
     }
-
-    /**
-     * 注册默认路由
-     *
-     * @return $this
-     */
-    public function defaultRoutes(): static
-    {
-        $this->routeGroup(function () {
-            Route::get('/', [IndexController::class, 'index'])->name($this->routeName('index'));
-            Route::get('auth/user', [AuthController::class, 'user'])->name($this->routeName('auth.user'));
-        });
-        $this->routeGroup(function () {
-            Route::get('auth', [AuthController::class, 'index'])->name($this->routeName('auth.index'));
-            Route::post('auth/login', [AuthController::class, 'login'])->name($this->routeName('auth.login'));
-            Route::post('auth/logout', [AuthController::class, 'logout'])->name($this->routeName('auth.logout'));
-        }, false);
-        return $this;
-    }
 }

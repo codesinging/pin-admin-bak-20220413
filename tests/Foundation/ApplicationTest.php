@@ -255,20 +255,4 @@ class ApplicationTest extends TestCase
         self::assertEquals(Admin::config('middlewares.guest'), $route->getAction('middleware'));
         self::assertEquals('admin/test234', $route->uri());
     }
-
-    /**
-     * @depends testCreateApplication
-     * @return void
-     */
-    public function testDefaultRoutes()
-    {
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('index')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('index')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.index')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.index')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.login')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.login')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('admin')->routeName('auth.logout')));
-        self::assertTrue(Route::getRoutes()->hasNamedRoute(Admin::boot('shop')->routeName('auth.logout')));
-    }
 }

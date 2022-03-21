@@ -41,7 +41,6 @@ use Illuminate\View\View;
  * @method Authenticatable|null user()
  * @method string routeName(string $name)
  * @method Application routeGroup(Closure $closure, bool $auth = true)
- * @method Application defaultRoutes()
  */
 class PinAdmin
 {

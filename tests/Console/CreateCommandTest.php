@@ -67,6 +67,14 @@ class CreateCommandTest extends TestCase
 
         $this->get('/admin/auth')
             ->assertOk();
+
+        $this->get('/admin/test/auth')
+            ->assertSeeText('Redirecting')
+            ->assertSeeText('admin/auth')
+            ->assertStatus(302);
+
+        $this->get('/admin/test/guest')
+            ->assertOk();
     }
 
     /**

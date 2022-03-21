@@ -100,7 +100,11 @@ class PinAdminServiceProvider extends ServiceProvider
     private function loadRoutes()
     {
         foreach (Admin::apps() as $app) {
-            $this->loadRoutesFrom($app->path('routes/web.php'));
+            Admin::boot($app->name());
+
+            $this->loadRoutesFrom(Admin::packagePath('routes/web.php'));
+            $app->routeGroup(fn() => $this->loadRoutesFrom($app->path('routes/guest.php')), false);
+            $app->routeGroup(fn() => $this->loadRoutesFrom($app->path('routes/auth.php')));
         }
     }
 
