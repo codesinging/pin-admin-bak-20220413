@@ -18,32 +18,41 @@ class PackageJson extends JsonFile
     }
 
     /**
+     * 添加命令
+     *
      * @param array $scripts
      *
-     * @return bool|int
+     * @return PackageJson
      */
-    public function addScripts(array $scripts): bool|int
+    public function addScripts(array $scripts): static
     {
-        return $this->merge('scripts', $scripts)->write();
+        $this->merge('scripts', $scripts)->write();
+        return $this;
     }
 
     /**
+     * 添加开发依赖
+     *
      * @param array $devDependencies
      *
-     * @return bool|int
+     * @return PackageJson
      */
-    public function addDevDependencies(array $devDependencies): bool|int
+    public function addDevDependencies(array $devDependencies): static
     {
-        return $this->merge('devDependencies', $devDependencies)->write();
+        $this->merge('devDependencies', $devDependencies)->write();
+        return $this;
     }
 
     /**
+     * 添加依赖
+     *
      * @param array $dependencies
      *
-     * @return bool|int
+     * @return PackageJson
      */
-    public function addDependencies(array $dependencies): bool|int
+    public function addDependencies(array $dependencies): static
     {
-        return $this->merge('dependencies', $dependencies)->write();
+        $this->merge('dependencies', $dependencies)->write();
+        return $this;
     }
 }
