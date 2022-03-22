@@ -6,7 +6,7 @@
 
 use CodeSinging\PinAdmin\Foundation\Application;
 use CodeSinging\PinAdmin\Foundation\PinAdmin;
-use CodeSinging\PinAdmin\Support\Routing\ApiResponse;
+use CodeSinging\PinAdmin\Support\Responses\ApiResponse;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;

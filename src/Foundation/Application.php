@@ -7,8 +7,6 @@
 namespace CodeSinging\PinAdmin\Foundation;
 
 use Closure;
-use CodeSinging\PinAdmin\Controllers\AuthController;
-use CodeSinging\PinAdmin\Controllers\IndexController;
 use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Auth\Authenticatable;

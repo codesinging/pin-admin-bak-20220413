@@ -4,9 +4,9 @@
  * Github: https://github.com/codesinging
  */
 
-namespace Tests\Support\Routing;
+namespace Tests\Support\Responses;
 
-use CodeSinging\PinAdmin\Support\Routing\ApiResponse;
+use CodeSinging\PinAdmin\Support\Responses\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
 

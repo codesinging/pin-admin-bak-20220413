@@ -4,12 +4,13 @@
  * Github: https://github.com/codesinging
  */
 
-namespace CodeSinging\PinAdmin\Support\Routing;
+namespace CodeSinging\PinAdmin\Support\Responses;
 
 use CodeSinging\PinAdmin\Exceptions\AdminError;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
+use function response;
 
 class ApiResponse
 {

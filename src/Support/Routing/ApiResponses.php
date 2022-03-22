@@ -7,6 +7,7 @@
 namespace CodeSinging\PinAdmin\Support\Routing;
 
 use CodeSinging\PinAdmin\Exceptions\AdminError;
+use CodeSinging\PinAdmin\Support\Responses\ApiResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
