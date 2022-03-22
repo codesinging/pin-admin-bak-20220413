@@ -149,6 +149,13 @@ class ApplicationTest extends TestCase
     public function testTemplate()
     {
         self::assertEquals('admin_admin::layout.app', (new Application('admin'))->template('layout.app'));
+        self::assertEquals('admin_shop::layout.app', (new Application('shop'))->template('layout.app'));
+    }
+
+    public function testPackageTemplate()
+    {
+        self::assertEquals('admin::layout.app', (new Application('admin'))->packageTemplate('layout.app'));
+        self::assertEquals('admin::layout.app', (new Application('shop'))->packageTemplate('layout.app'));
     }
 
     public function testCreateApplication()
@@ -174,10 +181,30 @@ class ApplicationTest extends TestCase
      * @depends testCreateApplication
      * @return void
      */
+    public function testPackageView()
+    {
+        self::assertEquals(view('admin::public.page'), (new Application('admin'))->packageView('public.page'));
+        self::assertEquals(view('admin::public.page'), (new Application('shop'))->packageView('public.page'));
+    }
+
+    /**
+     * @depends testCreateApplication
+     * @return void
+     */
     public function testPage()
     {
         self::assertEquals(view('admin_admin::public.page', ['path' => 'index']), (new Application('admin'))->page('index'));
         self::assertEquals(view('admin_shop::public.page', ['path' => 'index']), (new Application('shop'))->page('index'));
+    }
+
+    /**
+     * @depends testCreateApplication
+     * @return void
+     */
+    public function testPackagePage()
+    {
+        self::assertEquals(view('admin::public.page', ['path' => 'index']), (new Application('admin'))->packagePage('index'));
+        self::assertEquals(view('admin::public.page', ['path' => 'index']), (new Application('shop'))->packagePage('index'));
     }
 
     /**

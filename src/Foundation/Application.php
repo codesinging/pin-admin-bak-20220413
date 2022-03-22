@@ -296,6 +296,18 @@ class Application
     }
 
     /**
+     * 返回位于 PinAdmin 包目录的模板名
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    public function packageTemplate(string $path): string
+    {
+        return PinAdmin::LABEL . '::' . $path;
+    }
+
+    /**
      * 返回位于 PinAdmin 应用目录的视图内容
      *
      * @param string|null $view
@@ -311,6 +323,21 @@ class Application
     }
 
     /**
+     * 返回位于 PinAdmin 包目录的视图内容
+     *
+     * @param string|null $view
+     * @param array $data
+     * @param array $mergeData
+     *
+     * @return Factory|View
+     */
+    public function packageView(string $view = null, array $data = [], array $mergeData = []): Factory|View
+    {
+        empty($view) or $view = $this->packageTemplate($view);
+        return view($view, $data, $mergeData);
+    }
+
+    /**
      * 返回位于 PinAdmin 应用目录内的单文件组件内容
      *
      * @param string $path
@@ -321,6 +348,19 @@ class Application
     {
         $path = str_replace('.', '/', $path);
         return $this->view('public/page', compact('path'));
+    }
+
+    /**
+     * 返回位于 PinAdmin 包目录内的单文件组件内容
+     *
+     * @param string $path
+     *
+     * @return View|Factory
+     */
+    public function packagePage(string $path): View|Factory
+    {
+        $path = str_replace('.', '/', $path);
+        return $this->packageView('public/page', compact('path'));
     }
 
     /**

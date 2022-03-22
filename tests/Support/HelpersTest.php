@@ -114,6 +114,19 @@ class HelpersTest extends TestCase
         Factory::clean();
     }
 
+    /**
+     * @throws Exception
+     */
+    public function testAdminPackageTemplate()
+    {
+        Factory::new('admin')->create();
+        Admin::load()->boot('admin');
+
+        self::assertEquals('admin::layout.app', admin_package_template('layout.app'));
+
+        Factory::clean();
+    }
+
     public function testCreateApplication()
     {
         Factory::new('admin')->create();
@@ -134,9 +147,27 @@ class HelpersTest extends TestCase
      * @depends testCreateApplication
      * @return void
      */
+    public function testAdminPackageView()
+    {
+        self::assertEquals(view('admin::public.page'), admin_package_view('public.page'));
+    }
+
+    /**
+     * @depends testCreateApplication
+     * @return void
+     */
     public function testAdminPage()
     {
         self::assertEquals(view('admin_admin::public.page', ['path' => 'index']), admin_page('index'));
+    }
+
+    /**
+     * @depends testCreateApplication
+     * @return void
+     */
+    public function testAdminPackagePage()
+    {
+        self::assertEquals(view('admin::public.page', ['path' => 'index']), admin_package_page('index'));
     }
 
     /**

@@ -121,6 +121,20 @@ if (!function_exists('admin_template')) {
     }
 }
 
+if (!function_exists('admin_package_template')) {
+    /**
+     * 返回位于 PinAdmin 包目录的模板名
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    function admin_package_template(string $path): string
+    {
+        return admin()->packageTemplate($path);
+    }
+}
+
 if (!function_exists('admin_view')) {
     /**
      * 返回位于 PinAdmin 应用目录的视图内容
@@ -137,6 +151,22 @@ if (!function_exists('admin_view')) {
     }
 }
 
+if (!function_exists('admin_package_view')) {
+    /**
+     * 返回位于 PinAdmin 包目录的视图内容
+     *
+     * @param string|null $view
+     * @param array $data
+     * @param array $mergeData
+     *
+     * @return Factory|View
+     */
+    function admin_package_view(string $view = null, array $data = [], array $mergeData = []): Factory|View
+    {
+        return admin()->packageView($view, $data, $mergeData);
+    }
+}
+
 if (!function_exists('admin_page')) {
     /**
      * 返回位于 PinAdmin 应用目录内的单文件组件内容
@@ -148,6 +178,20 @@ if (!function_exists('admin_page')) {
     function admin_page(string $path): Factory|View
     {
         return admin()->page($path);
+    }
+}
+
+if (!function_exists('admin_package_page')) {
+    /**
+     * 返回位于 PinAdmin 包目录内的单文件组件内容
+     *
+     * @param string $path
+     *
+     * @return Factory|View
+     */
+    function admin_package_page(string $path): Factory|View
+    {
+        return admin()->packagePage($path);
     }
 }
 
