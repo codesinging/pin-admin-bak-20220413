@@ -6,7 +6,6 @@
 
 namespace CodeSinging\PinAdmin\Foundation;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
