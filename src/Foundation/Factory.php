@@ -222,57 +222,64 @@ class Factory
     /**
      * 创建 PinAdmin 应用根目录
      */
-    private function createRootDirectories()
+    public function createRootDirectories(): static
     {
         $this->makeDirectories(
             Admin::rootPath(),
             Admin::rootAppPath(),
             Admin::rootPublicPath()
         );
+
+        return $this;
     }
 
     /**
      * 创建 PinAdmin 应用基础目录、应用类目录、公共文件目录
      */
-    private function createDirectories()
+    public function createDirectories(): static
     {
         $this->makeDirectories(
             $this->app->path(),
             $this->app->appPath(),
             $this->app->publicPath()
         );
+        return $this;
     }
 
     /**
      * 创建路由文件
      */
-    private function createRoutes()
+    public function createRoutes(): static
     {
         $this->makeFiles($this->stubPath('routes'), $this->app->path('routes'));
+        return $this;
     }
 
     /**
      * 创建配置文件
      */
-    private function createConfig()
+    public function createConfig(): static
     {
         $this->makeFiles($this->stubPath('config'), $this->app->path('config'));
+        return $this;
     }
 
     /**
      * 创建数据库迁移文件
      */
-    private function createMigrations()
+    public function createMigrations(): static
     {
         $this->makeFiles($this->stubPath('migrations'), $this->app->path('migrations'));
+        return $this;
     }
 
     /**
      * 创建资源文件
      */
-    private function createResources()
+    public function createResources(): static
     {
         File::copyDirectory(Admin::packagePath('publish'), $this->app->path('resources'));
+        return $this;
     }
 
     /**

@@ -25,7 +25,7 @@ class AuthControllerTest extends TestCase
 
     public function testCreate()
     {
-        Factory::new('admin')->create()->boot();
+        $this->artisan('admin:create admin');
         self::assertTrue(Factory::has('admin'));
     }
 

@@ -38,7 +38,15 @@ class CreateCommand extends BaseCommand
 
         if ($this->verify($name = Str::snake($this->argument('name')))) {
             if (!Factory::exists($name)) {
-                Factory::new($name)->create()->boot();
+                Factory::new($name)
+                    ->createRootDirectories()
+                    ->createDirectories()
+                    ->createRoutes()
+                    ->createConfig()
+                    ->createMigrations()
+                    ->createResources()
+                    ->boot();
+
                 $this->runMigrations();
                 $this->runSeeders();
 
